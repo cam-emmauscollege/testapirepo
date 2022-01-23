@@ -1,10 +1,10 @@
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'     
+      name:
+        description: 'Name'     
         required: true
-        default: 'warning'
+        default: 'Tom Poes'
       tags:
         description: 'Test scenario tags' 
 
@@ -17,7 +17,7 @@ jobs:
         id: hello
         uses: octocat/hello-world-javascript-action@v1.1
         with:
-          who-to-greet: 'Mona the Octocat'
+          who-to-greet: ${{ github.event.inputs.name }}
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
